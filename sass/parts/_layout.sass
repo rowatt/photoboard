@@ -1,0 +1,63 @@
+/* --------------------------------------------------------------
+/* What is shown/hidden to begin with
+/* -------------------------------------------------------------- */
+
+#full-wrapper,
+#show-filter,
+#sorry
+	display: none
+
+#js-msg
+	display: block
+
+/* --------------------------------------------------------------
+/* Main layout blocks
+/* -------------------------------------------------------------- */
+
+#page
+	+clearfix
+	padding: 20px 20px 40px 20px
+
+#main
+	margin: 40px 0 15px 0
+
+@media #{$media-small}
+	#page
+		padding: 0 12px 20px 12px
+	#main
+		margin-top: 12px
+
+#main-container
+	+clearfix
+
+#header
+	width: 100%
+
+#footer
+	font-size: 0.9em
+	.navbar-inner
+		margin: 0
+		text-align: center
+		min-height: 0
+		padding: 5px
+
+#photoboard-thumbs
+	float: left
+	min-height: 1px
+#full-wrapper
+	float: left
+	margin-left: 20px
+.full-img
+	background-repeat: no-repeat
+
+#full-wrapper
+	margin-bottom: 40px
+.full-container
+	position: absolute
+#ajax-full
+	z-index: 10
+#help-full
+	z-index: 0
+#filters-full
+	z-index: 20
+	height: 600px

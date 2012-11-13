@@ -1,0 +1,535 @@
+/* --------------------------------------------------------------
+/* Start with everything off for people without js etc
+/* -------------------------------------------------------------- */
+
+#js-msg
+	position: absolute
+	top: 60px
+	left: 500px
+	color: white
+
+#sorry,
+#offline
+	position: absolute
+	@include box-sizing(content-box)
+	top:  50px
+	left: 50%
+	margin-left: -300px
+	width: 600px
+
+	.sorry-text
+		@include box-sizing(content-box)
+		position: absolute
+		z-index: 999
+		width: 560px
+		height: 560px
+		background-color: rgba( 0,0,0,0.5 )
+		margin: 10px
+		padding: 10px
+		color: white
+
+	img
+		position: absolute
+		width: 600px
+		height: 600px
+
+
+/* --------------------------------------------------------------
+/* General formatting styles
+/* -------------------------------------------------------------- */
+
+.assistive-text
+	position: absolute !important
+	clip: rect(1px 1px 1px 1px) /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px)
+
+.hidden
+	position: absolute !important
+	clip: rect(1px 1px 1px 1px) /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px)
+	height: 0
+	width: 0
+	overflow: hidden
+	display: none
+
+[class^="icon-"],
+[class*=" icon-"]
+	background-image: none
+
+.when-small-show
+	display: none !important
+
+@media #{$media-small}
+	.when-small-hide
+		display: none !important
+	.when-small-show
+		display: block !important
+
+
+/* --------------------------------------------------------------
+/* Menu
+/* -------------------------------------------------------------- */
+
+$navbar-opacity: 0.8
+
+//filter/search button
+.navbar
+	.navbar-inner
+		padding: 0 0 0 20px
+		height: 30px
+		min-height: 30px
+		box-shadow: none
+		background: none
+		background-color: black
+		background-color: rgba(0,0,0,$navbar-opacity)
+		overflow: hidden
+
+	.navbar-fader
+		height: 30px
+		+background-image(linear-gradient(rgba(0,0,0,$navbar-opacity), rgba(0,0,0,0)))
+
+	.brand
+		font-family: 'Merienda One', cursive
+		padding:  10px 20px 0 20px
+
+#show-filter
+	float: right
+	i.icon
+		font-size: 1.6em
+		span
+			display: none
+
+@media #{$media-small}
+	.navbar
+		.brand
+			display: none
+		.navbar-inner
+			background: none
+
+		.navbar-fader
+			display: none
+
+	#show-filter
+		padding: 5px 5px 5px 0
+		text-align: right
+
+
+/* --------------------------------------------------------------
+/* Footer
+/* -------------------------------------------------------------- */
+
+#footer
+	.navbar-inner
+		box-shadow: none
+		background: none
+		background-color: black
+		background-color: rgba(0,0,0,$navbar-opacity)
+
+	.navbar-fader
+		height: 15px
+		+background-image(linear-gradient( rgba(0,0,0,0), rgba(0,0,0,$navbar-opacity) ) )
+/* --------------------------------------------------------------
+/* ! photo thumbnails
+/* -------------------------------------------------------------- */
+
+$thumb-height: 75px
+$thumb-width: 75px
+
+#photoboard-thumbs
+	width: 500px //@r
+	+clearfix
+
+.person-thumb
+	float: left
+	position: relative
+	cursor: pointer
+	overflow: visible
+	z-index: 0
+	height: $thumb-height
+	width: $thumb-width
+	background: url(/board/wp-content/themes/photoboard/img/blank.png)
+	background-size: 75px 75px
+
+	img
+		height: $thumb-height
+		width: $thumb-width
+
+	p
+		position: absolute
+		bottom: 0
+		font-size: 0.8em
+		line-height: 1.2
+		background-color: rgba( 0,0,0,0.8 )
+		color: white
+		text-align: center
+		width: 100%
+		padding: 2px 3px
+		margin: 0
+		display: none
+
+	&:hover
+		z-index: 10
+		overflow: visible
+		margin-right: -25px
+		width: 100px
+		background: none
+		p
+			display: block
+			margin: 0 0 -9px -8px //@r
+			width:  92px //@r
+		img
+			position: absolute
+			border: 4px solid white
+			width: 100px //@r
+			height: 100px //@r
+			margin: -12px 0 0 -12px //@r
+			background: url(/board/wp-content/themes/photoboard/img/blank.png)
+			background-size: 100px 100px
+
+@media #{$media-large}
+	$thumb-height: 100px
+	$thumb-width: 100px
+
+	#photoboard-thumbs
+		width: 600px
+
+	.person-thumb
+		height: $thumb-height
+		width: $thumb-width
+		background-size: 100px 100px
+
+		img
+			height: $thumb-height
+			width: $thumb-width
+
+		&:hover
+			z-index: 10
+			margin-right: -8px
+			width: 108px
+			p
+				margin: 0
+				width:  100px
+			img
+				margin: 0
+				width: 108px
+				height: 108px
+				margin: -4px 0 0 -4px
+
+
+/* --------------------------------------------------------------
+/* Full sized photo area
+/* -------------------------------------------------------------- */
+
+$full-width: 300px
+$full-height: 300px
+
+#full-wrapper
+	position: fixed
+	margin-left: 620px
+	width: $full-width
+	height: $full-height
+
+.full-img
+	background-size: $full-width $full-height
+	width: $full-width
+	height: $full-height
+
+.photo-placeholder
+	background-image: url(/board/wp-content/themes/photoboard/img/blank.png)
+
+//photo and blank image styling
+.full-info
+	width: $full-width
+	min-height: $full-height
+	cursor: pointer
+
+	.full-img
+		z-index: 10
+		position: absolute
+
+	.loading
+		position: absolute
+		z-index: 0
+		height: 32px //@r
+		left: 138px //@r 276px
+		top: 138px //@r 276px
+
+	article
+		z-index: 20
+		position: absolute
+		bottom: 0
+		padding: 10px
+		background-color: rgba( 0,0,0,0.6)
+		width: 100%
+		color: white
+		font-size: 1em //@r 1em
+
+		h1
+			font-size: 1.5em //@r 2em/1em
+			line-height: 1.2
+			margin: 0
+			.icon-info-sign
+				float: right
+				margin-top: 6px
+
+		.secondary
+			position: relative
+			margin: 5px 0 5px 35px
+			display: none
+
+			.icon
+				position: absolute
+				left: -35px
+				top: 3px
+				font-size: 1.5em
+
+		.last-updated
+			text-align: right
+			font-style: italic
+			font-size:  0.8em
+			margin: 0
+			line-height: 1
+
+#full-wrapper
+	&:hover, &.is-hovered
+		article
+			position: relative
+			top: 0
+			min-height: 300px
+			.primary.hide-on-hover
+				display: none
+			.secondary
+				display: block
+			h1
+				display: none
+
+	&.not-hovered
+		article
+			position: absolute
+			bottom: 0
+			top: auto
+			min-height: 0
+			.primary.hide-on-hover
+				display: block
+			.secondary
+				display: none
+			h1
+				display: block
+
+#help-full
+	h1 i
+		display: none
+
+@media #{$media-large}
+	$full-width: 600px
+	$full-height: 600px
+
+	#full-wrapper
+		width: $full-width
+		height: $full-height
+
+	.full-img
+		background-size: $full-width $full-height
+		width: $full-width
+		height: $full-height
+
+	//photo and blank image styling
+	.full-info
+		width: $full-width
+		min-height: $full-height
+
+		.loading
+			height: 64px
+			left: 276px
+			top: 276px
+
+		article
+			font-size: 1.2em
+
+			h1
+				font-size: 2em
+				line-height: 1.2
+
+				.icon-info-sign
+					margin: 12px 14px 0 0
+
+			.secondary
+				margin: 10px 0 20px 45px
+
+				.icon
+					font-size: 2em
+					left:  -45px
+
+			.last-updated
+				font-size:  0.9em
+				margin: 0
+
+	#full-wrapper
+		&:hover, &.is-hovered
+			article
+				min-height: $full-height
+
+		&.not-hovered
+			article
+				min-height: 0
+
+
+@media #{$media-small}
+	$full-width: 200px
+	$full-height: 200px
+
+	#full-wrapper
+		width: $full-width
+		height: $full-height
+		margin-top: 30px
+
+	.full-img
+		background-size: $full-width $full-height
+		width: $full-width
+		height: $full-height
+
+	//photo and blank image styling
+	.full-info
+		width: $full-width
+		min-height: $full-height
+
+		.loading
+			height: 20px
+			left: 90px
+			top: 90px
+
+		article
+			font-size: 1em
+
+			h1
+				font-size: 1em
+				line-height: 1.2
+
+				.icon-info-sign
+					display: none
+
+			.secondary
+				margin: 10px 0 10px 5px
+				font-size: 0.9em
+				line-height: 1.3
+
+				.icon
+					display: none
+
+			.last-updated
+				font-size:  0.8em
+				margin: 0
+
+	#full-wrapper
+		&:hover, &.is-hovered
+			article
+				min-height: $full-height
+
+		&.not-hovered
+			article
+				min-height: 0
+
+	#help-full
+		.primary
+			font-size: 0.9em
+
+
+/* --------------------------------------------------------------
+/* Filters area
+/* -------------------------------------------------------------- */
+
+#filters
+	background-color: black
+	background-color: rgba( 50,50,50, 0.95)
+	width: 600px
+	padding: 20px
+	border: 3px solid white
+	position: absolute
+	z-index: 9999
+	top: 40px //@r
+	left: 50%
+	margin-left: -300px
+	color: white
+	display: none
+
+	h2
+		clear: both
+		float: left
+		margin: 0
+		font-size: 1.5em
+
+	.check-buttons
+		padding-left: 10px
+		display: inline
+
+		span
+			cursor: pointer
+			margin: 2px
+			position: relative
+			top: 10px
+
+	.close
+		position: absolute
+		top: 5px
+		right: 5px
+		+opacity(1)
+		text-shadow: none
+		font-size: 30px
+		width: 35px
+		height: 35px
+		color: white
+		&:hover
+			color: black
+
+	.filter-list
+		display: block
+		list-style-type: none
+		clear: both
+		+clearfix
+		li
+			margin: 0px
+			padding: 0px
+			width: 250px
+			float: left
+			display: block
+
+		label
+			display: inline
+			padding: 0 10px
+
+		.filter-checkbox
+			input
+				vertical-align: top
+
+@media #{$media-med}
+	#filters
+		width: 500px
+		left: auto
+		margin-left: 0
+
+@media #{$media-small}
+	#filters
+		width: 100%
+		left: 0
+		margin-left: 0
+		margin-top: -40px
+		border: none
+		top: 0
+		z-index: 1100
+
+		h2
+			font-size: 1.3em
+
+		.filter-list
+			li
+				width: 100%
+			label
+				font-size: 1.2em
+				line-height: 1.6
+
+		.filter-checkbox
+			input
+				vertical-align: baseline
+
+		.check-buttons
+			display: none

@@ -1,0 +1,1 @@
+jQuery(function(e){e("#load-ajax").click(function(){e.ajax({type:"POST",url:ajaxurl,data:{action:"photoboard"}}).success(function(t,n,r){e("#ajax-content").html(t)})})});
