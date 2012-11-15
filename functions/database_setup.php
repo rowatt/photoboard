@@ -151,17 +151,12 @@ function photoboard_data_import()
 			if( is_string($t) ) $t = trim($t);
 		} );
 
-		if( $field_vals['id']==104 )
-		{
-			$a=1;
-		}
-
 		//we are reimporting existing ID
 		$record_exists = $wpdb->get_var( "SELECT COUNT(id) FROM {$wpdb->prefix}photoboard_people WHERE id={$field_vals['id']};" );
 
 		//make sure we only have one record for any person
 		//import is in reverse order, so if ID already exists we don't import any more
-		$sql = $wpdb->prepare( "SELECT id FROM {$wpdb->prefix}photoboard_people WHERE first_name='%s' AND last_name='%s' LIMIT 1;", $field_vals['first_name'], $field_vals['last_name'] );
+		$sql = $wpdb->prepare( "SELECT id FROM {$wpdb->prefix}photoboard_people WHERE first_name='%s' AND last_name='%s' AND status=0 LIMIT 1;", $field_vals['first_name'], $field_vals['last_name'] );
 		$prev_id = $wpdb->get_var( $sql );
 		if( $prev_id && !$record_exists )
 		{
@@ -235,7 +230,7 @@ function photoboard_data_import()
 		}
 		elseif( $field_vals['use_existing'] )
 		{
-			$copy_existing_photo( $field_vals );
+			copy_existing_photo( $field_vals );
 		}
 
 

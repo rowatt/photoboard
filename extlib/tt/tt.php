@@ -743,8 +743,41 @@ class timthumb {
 			$imgType = 'jpg';
 			/*
 			 * MRA HACK - force jpegs to be saved as progressive jpegs
+			 * also makes sure image is rotated properly
 			 */
+			//make progressive
+
 			imageinterlace($canvas, true);
+
+			//rotate
+			if( function_exists('exif_read_data') && function_exists('imagerotate') )
+			{
+				//ignore errors in case exif data is invalid
+				$exif_data = @exif_read_data($localImage);
+
+				if( !empty( $exif_data['Orientation'] ) )
+				{
+					switch( $exif_data['Orientation'] )
+					{
+						case 6:
+							$rotate_angle = -90;
+							break;
+
+						case 8:
+							$rotate_angle = 90;
+							break;
+
+						case 3:
+							$rotate_angle = 180;
+							break;
+
+						default:
+							$rotate_angle = 0;
+							break;
+					}
+					$canvas = imagerotate( $canvas, $rotate_angle, 0);
+				}
+			}
 			/*
 			 * END HACK
 			 */
