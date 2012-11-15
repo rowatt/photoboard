@@ -14,6 +14,7 @@ class Photoboard_People
 		$where = ' WHERE 1=1';
 		if( !$this->is_community_ip() )
 			$where .= ' AND local_only=0';
+		$where .= ' AND status=0'; //anything >0 means record deleted, replaced etc
 		$where .= ' AND ( photo<>"" AND photo<>"X" )';
 		if( $and_where )
 			$where .= ' AND ' . $and_where;
