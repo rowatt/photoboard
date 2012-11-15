@@ -151,11 +151,6 @@ function photoboard_data_import()
 			if( is_string($t) ) $t = trim($t);
 		} );
 
-		if( $field_vals['id']==104 )
-		{
-			$a=1;
-		}
-
 		//we are reimporting existing ID
 		$record_exists = $wpdb->get_var( "SELECT COUNT(id) FROM {$wpdb->prefix}photoboard_people WHERE id={$field_vals['id']};" );
 
