@@ -180,6 +180,8 @@ class Photoboard_Person
 	{
 		$classes = array();
 
+		if( $this->local_only ) $classes['local_only'] = 'local_only';
+
 		if( $this->ff_member || $this->ff_member_admin ) $classes['ff_member'] = 'ff_member';
 		if( $this->ff_other ) $classes['ff_other'] = 'ff_other';
 		if( $this->ff_guest ) $classes['ff_guest'] = 'ff_guest';
