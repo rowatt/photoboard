@@ -37,7 +37,8 @@ define( 'PHOTOBOARD_GRAVITY_DIR', '/wp/wp-content/uploads/gravity_forms/1-a13b28
 define( 'PHOTOBOARD_PIX_URL_STRIP', 'http://photoboard.findhorn.cc' . PHOTOBOARD_GRAVITY_DIR );
 
 //if TRUE will import all records overwriting any existing ones
-define ('PHOTOBOARD_IMPORT_ALL', TRUE );
+//use with caution - changes are made direct in the database, not to the original form
+define ('PHOTOBOARD_IMPORT_ALL', FALSE );
 
 if( 'photoboard.dev' == $_SERVER['SERVER_NAME'] )
 {
