@@ -235,7 +235,7 @@ function photoboard_data_import()
 		}
 		elseif( $field_vals['use_existing'] )
 		{
-			$copy_existing_photo( $field_vals );
+			copy_existing_photo( $field_vals );
 		}
 
 
