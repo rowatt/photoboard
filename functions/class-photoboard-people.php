@@ -42,8 +42,10 @@ class Photoboard_People
 	private function is_community_ip()
 	{
 		return in_array( $_SERVER['REMOTE_ADDR'], array(
-		                                                'x127.0.0.1', //local machine
-		                                                'x81.174.224.21' //MRA home
+		                                                '127.0.0.1', //local machine
+		                                                '81.174.224.21', //MRA home
+		                                                '81.5.166.91', //Park
+		                                                '81.174.141.214' //Cluny
 		                                           ) );
 	}
 
